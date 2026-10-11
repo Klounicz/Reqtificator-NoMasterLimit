@@ -1,0 +1,33 @@
+﻿<Window x:Class="Reqtificator.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Reqtificator"
+        xmlns:gui="clr-namespace:Reqtificator.Gui"
+        mc:Ignorable="d"
+        Title="Reqtificator" SizeToContent="WidthAndHeight"
+        Icon="../Resources/Reqtificator.ico">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+        <gui:InverseBooleanConverter x:Key="InverseConverter" />
+    </Window.Resources>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel VerticalAlignment="Center">
+            <Image Source="../Resources/images/Requiem title.png" Width="300" Stretch="Uniform" Margin="16, 16, 16, 16"/>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel Height="48"/>
+            <CheckBox IsChecked="{Binding VerboseLogging}">Verbose logging</CheckBox>
+            <CheckBox IsChecked="{Binding MergeLeveledCharacters}">Merge leveled characters</CheckBox>
+            <CheckBox IsChecked="{Binding MergeLeveledLists}">Merge leveled lists</CheckBox>
+            <CheckBox IsChecked="{Binding OpenEncounterZones}">Open encounter zones</CheckBox>
+            <CheckBox IsChecked="{Binding RaceVisualAutoMerge}">Automatically merge race visuals</CheckBox>
+            <CheckBox IsChecked="{Binding ActorVisualAutoMerge}">Automatically merge actor visuals</CheckBox>
+            <StackPanel />
+            <Label Content="{Binding ProgramStatus}" Margin="12,0,0,0" />
+            <ProgressBar Height="10" Value="{Binding Progress, Mode=OneWay}" Visibility="{Binding IsPatching, Converter={StaticResource VisibleIfTrueConverter}}" Margin="16,0,20,0" />
+            <Button Command="{Binding PatchCommand}" Width="80" HorizontalAlignment="Left" IsEnabled="{Binding IsPatching, Converter={StaticResource InverseConverter}}">Patch</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

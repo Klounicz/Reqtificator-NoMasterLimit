@@ -426,3 +426,11 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# Reqtificator build output - distributed via Releases, not git
+Reqtificator/app/
+
+
+# Reqtificator build output - distributed via Releases, not git
+Reqtificator/app/
+
