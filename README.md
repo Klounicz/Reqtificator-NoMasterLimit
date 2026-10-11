@@ -27,9 +27,20 @@ Full instructions: [README-EN.txt](README-EN.txt) | [README-RU.txt](README-RU.tx
 
 ## Build from source
 
-Open `Source/Reqtificator/Reqtificator.sln` in Visual Studio, or use .NET SDK 5+ with dotnet publish for win-x64 self-contained.
+Requirements: Windows x64, [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) (targets `net5.0`, WPF).
 
-Source layout: `Source/Reqtificator/Reqtificator/` (tool), `Source/Reqtificator/ReqtificatorTest/` (tests).
+```powershell
+# build the app
+dotnet build Source/Reqtificator/Reqtificator/Reqtificator.csproj -c Release
+
+# self-contained publish, as used for the release zip (no runtime install needed)
+dotnet publish Source/Reqtificator/Reqtificator/Reqtificator.csproj -c Release -r win-x64 --self-contained true -o Reqtificator/app
+
+# run tests (optional)
+dotnet test Source/Reqtificator/ReqtificatorTest/ReqtificatorTest.csproj
+```
+
+Key changed files: `Source/Reqtificator/Reqtificator/PatchSplitter.cs` (new), `Source/Reqtificator/Reqtificator/Backend.cs` (split on "too many masters" instead of aborting).
 
 ## Version
 
